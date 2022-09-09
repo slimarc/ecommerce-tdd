@@ -9,34 +9,46 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ProdutosTests {
 
 	@Test
-	void validarPropriedadesProduto() {
+	void validarPropriedades() {
+
 		var produto = new Produto();
-		produto.setCodigo("mte5487");
-		produto.setNome("Nome produto teste");
-		produto.setDescricao("Descricao teste");
-		produto.setQtd(100);
+		produto.setNome("Mouse colorido");
+		produto.setDescricao("Um produto feito no teste");
 		produto.setValor(5.80);
-	
-		assertEquals("MTE5487", produto.getCodigo());
-		assertEquals("Nome produto teste", produto.getNome());
-		assertEquals("Descricao teste", produto.getDescricao());
-		assertEquals(100, produto.getQtd());
+		produto.setQtd(100);
+
+		assertEquals("Mouse colorido", produto.getNome());
+		assertEquals("Um produto feito no teste", produto.getDescricao());
 		assertEquals(5.80, produto.getValor());
-
-	}
-	
-	@Test
-	void aoSetarNomeGeraCodigoVazio() {
-		var produto = new Produto();
-		produto.setNome("Nome produto teste");
-		assertEquals("NOM-18", produto.getCodigo());
+		assertEquals(100, produto.getQtd());
 	}
 
 	@Test
-	void aoSetarNomeNaoGeraCodigoPreenchido() {
+	void geraCodigoAoSetarNome(){
 		var produto = new Produto();
-		produto.setCodigo("TTT-001");
-		produto.setNome("Nome produto teste");
-		assertEquals("TTT-001", produto.getCodigo());
+		produto.setNome("Bicicleta");
+		assertEquals("BIC-9", produto.getCodigo());
+	}
+
+	@Test
+	void geraCodigoAoSetarNome2(){
+		var produto = new Produto();
+		produto.setNome("Cachorro vermelho");
+		assertEquals("CAC-17", produto.getCodigo());
+	}
+
+	@Test
+	void geraCodigoAoSetarNome3(){
+		var produto = new Produto();
+		produto.setNome("Banana Nanica");
+		assertEquals("BAN-13", produto.getCodigo());
+	}
+
+	@Test
+	void casoDigiteCodigoDepoisAltereNomeOCodigoFicaOMesmo(){
+		var produto = new Produto();
+		produto.setCodigo("TTT-21");
+		produto.setNome("Banana Nanica");
+		assertEquals("TTT-21", produto.getCodigo());
 	}
 }
